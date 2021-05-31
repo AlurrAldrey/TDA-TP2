@@ -14,7 +14,6 @@ def main():
 
     opt = [[0]*n for i in range(n)]
     elecciones = [[0]*n for i in range(n)]
-    print(opt)
 
     k = 0
     while k < n:
@@ -27,29 +26,19 @@ def main():
                 elecciones[izq][der] = izq
             else:
             
-                carta_izq = (opt[izq][izq] - opt[izq+1][der])
-                carta_der = (opt[der][der] - opt[izq][der-1])
+                elijo_izq = (opt[izq][izq] - opt[izq+1][der])
+                elijo_der = (opt[der][der] - opt[izq][der-1])
 
-                if carta_izq > carta_der:
+                if elijo_izq > elijo_der:
                     elecciones[izq][der] = izq
-                    opt[izq][der] = carta_izq
+                    opt[izq][der] = elijo_izq
                 else:
                     elecciones[izq][der] = der
-                    opt[izq][der] = carta_der
-                #opt[izq][der] = max(carta_izq, carta_der)
-            
-            print((izq,der),opt[izq][der])
+                    opt[izq][der] = elijo_der
             izq += 1
             der += 1
         k += 1
 
-    print("optimos:")
-    for fila in opt:
-        print(fila)
-    
-    print("elecciones:")
-    for fila in elecciones:
-        print(fila)
 
     izq = 0
     der = n-1
@@ -61,7 +50,7 @@ def main():
         
         eleccion = elecciones[izq][der] #lado que elije
         carta_elegida = cartas[eleccion] #la carta que estaba en ese lado
-        resultado[jugador].append(carta_elegida)
+        resultado[jugador].append(str(carta_elegida))
         puntajes[jugador] += carta_elegida
         jugador = (jugador+1)%2 #cambio de jugador
         
@@ -70,8 +59,11 @@ def main():
         else:
             der-=1
         
-    print(resultado)
-    print(puntajes)
+    for i in range(0,2):
+        print("Jugador",i + 1,":")
+        print("Cartas elegidas: " + ",".join(resultado[i]))
+        print("Puntos sumados",puntajes[i])
+        
 
     
 
