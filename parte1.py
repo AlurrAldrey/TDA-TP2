@@ -63,6 +63,7 @@ def main():
         print("Jugador",i + 1,":")
         print("Cartas elegidas: " + ",".join(resultado[i]))
         print("Puntos sumados",puntajes[i])
+    
         
 
     
